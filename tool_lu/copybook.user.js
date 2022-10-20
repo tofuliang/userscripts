@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         字帖调整
 // @namespace    https://tofuliang.me/
-// @version      0.2
+// @version      0.3
 // @description  match size to exercise book
 // @author       tofuliang
 // @match        https://tool.lu/copybook/template.html
@@ -15,7 +15,7 @@
     let lastRowHasExample = false
     $(".table .row").each((i,row)=>{
         let $row = $(row)
-        let pageRow = $row.find(".cell .pinyin").length > 0 && 14||20
+        let pageRow = $row.find(".cell .pinyin").length > 0 && 13||20
         let lastCell = $row.children().last()[0]
         let practice = $row.find(".cell .chinese .practice")
         if(practice.length > 0){
@@ -46,10 +46,9 @@
         lastRowHasExample = $row.has('.chinese .example').length > 0
     })
     $(".chinese svg").addClass("word")
-    $(".cell").css({width:"60px","margin-top":0,"margin-bottom":0})
-    $(".cell .chinese").css({width:"40px",heigth:"40px",padding:"10px 10px 0 10px","background-size":"100%"})
+    $(".cell").css({width:"60px","margin-top":0,"margin-bottom":"10px"})
+    $(".cell .chinese").css({width: "40px",height:"40px",padding:"10px","background-size":"100%",})
     $(".cell .chinese .word").css({width: "40px", height:"40px"})
     $(".cell .pinyin").css({width: "60px", height:"38px","font-size":"20px", "line-height":"38px","background-size":"100%"})
     $("<style>").prop("type", "text/css").html('@media print {@page {margin-bottom:0;}}').appendTo("head");
 })();
-
